@@ -27,3 +27,6 @@ dist-ssr/
 # Sistema operacional
 .DS_Store
 Thumbs.db
+
+# Atalhos do Windows
+*.lnk
