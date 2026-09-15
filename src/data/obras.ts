@@ -22,7 +22,9 @@ import unveranoSinTi from '../assets/Unveranosinti.jpg'
 import vagabond from '../assets/vagabond.jpg'
 import vampire from '../assets/vampire.jpg'
 
-export const obras = [
+import type { Obra } from '../types/obra'
+
+export const obras: Obra[] = [
   // FILMES
   {
     id: 1,
