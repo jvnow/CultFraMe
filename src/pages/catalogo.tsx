@@ -1,4 +1,5 @@
 import { useMemo, useState } from 'react'
+import { useSearchParams } from 'react-router-dom'
 
 import Header from '../components/Header'
 import ObraCard from '../components/ObraCard'
@@ -6,8 +7,14 @@ import ObraCard from '../components/ObraCard'
 import { obras } from '../data/obras'
 
 function Catalogo() {
+  const [searchParams] = useSearchParams()
+
+  const buscaInicial =
+    searchParams.get('busca') ?? ''
+
   const [categoria, setCategoria] = useState('Todas')
-  const [busca, setBusca] = useState('')
+  const [busca, setBusca] = useState(buscaInicial)
+  
   const [notaMinima, setNotaMinima] = useState(0)
   const [ordenacao, setOrdenacao] = useState('padrao')
   const [quantidadeExibida, setQuantidadeExibida] = useState(12)
@@ -133,7 +140,7 @@ function Catalogo() {
 
         <div className="catalogo-search">
 
-          <span>🔎</span>
+          <span></span>
 
           <input
             type="text"
@@ -423,12 +430,13 @@ function Catalogo() {
 
               {obrasExibidas.map((obra) => (
                 <ObraCard
-                  key={obra.id}
-                  titulo={obra.titulo}
-                  tipo={obra.tipo}
-                  imagem={obra.imagem}
-                  nota={obra.nota}
-                />
+              key={obra.id}
+              id={obra.id}
+              titulo={obra.titulo}
+              tipo={obra.tipo}
+              imagem={obra.imagem}
+              nota={obra.nota}
+              />
               ))}
 
             </div>
