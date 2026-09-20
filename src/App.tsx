@@ -10,7 +10,7 @@ import Obra from './pages/Obra'
 
 function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="/CultFraMe">
       <Routes>
         <Route
           path="/"
