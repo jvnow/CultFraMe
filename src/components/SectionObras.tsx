@@ -15,18 +15,26 @@ interface SectionObrasProps {
   onVerMais?: () => void
 }
 
-function SectionObras({ titulo, obras, limite, onVerMais }: SectionObrasProps) {
+function SectionObras({
+  titulo,
+  obras,
+  limite,
+  onVerMais,
+}: SectionObrasProps) {
   const obrasExibidas = limite
     ? obras.slice(0, limite)
     : obras
 
   return (
-  
     <section>
       <div className="section-header">
         <h2>{titulo}</h2>
 
-      <button onClick={onVerMais}>Ver mais</button>
+        {onVerMais && (
+          <button onClick={onVerMais}>
+            Ver mais
+          </button>
+        )}
       </div>
 
       <div className="section-line"></div>
@@ -35,6 +43,7 @@ function SectionObras({ titulo, obras, limite, onVerMais }: SectionObrasProps) {
         {obrasExibidas.map((obra) => (
           <ObraCard
             key={obra.id}
+            id={obra.id}
             titulo={obra.titulo}
             tipo={obra.tipo}
             imagem={obra.imagem}

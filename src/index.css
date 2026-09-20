@@ -4,6 +4,10 @@
   box-sizing: border-box;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   font-family: Arial, sans-serif;
   background-color: #14151a;
@@ -15,54 +19,73 @@ body {
   min-height: 100vh;
 }
 
-header {
-  padding: 30px 40px;
+/* ========================================
+   HEADER
+======================================== */
+
+.site-header {
+  width: 100%;
+  padding: 25px 40px;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  gap: 35px;
+  border-bottom: 1px solid #292b32;
+  background-color: #14151a;
 }
 
-header input {
-  width: 350px;
-  padding: 12px 16px;
-  font-size: 16px;
-  border: 1px solid #ff9d00;
-  border-radius: 8px;
-  background-color: #1d1e24;
-  color: white;
-  outline: none;
-}
-
-header input:focus {
-  border-color: #ffd000;
-}
-
-header h1 {
+.site-logo {
   color: #ff9d00;
-  font-size: 32px;
+  font-size: 1.8rem;
+  font-weight: 800;
+  text-decoration: none;
+  white-space: nowrap;
 }
 
-header input::placeholder {
-  color: #999;
+.site-logo:hover {
+  color: #ffd000;
 }
 
-.cards-container {
+.site-nav {
   display: flex;
+  align-items: center;
   gap: 25px;
-  flex-wrap: wrap;
+  flex: 1;
 }
 
-.cards-container img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.3s ease;
-  display: block;
+.site-nav a {
+  color: #a9abb2;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 0.2s ease;
 }
 
-.cards-container img:hover {
-  transform: scale(1.05);
+.site-nav a:hover {
+  color: #ffd000;
 }
+
+.site-header input {
+  width: 280px;
+  height: 40px;
+  padding: 0 14px;
+  border: 1px solid #30323a;
+  border-radius: 8px;
+  outline: none;
+  background-color: #1b1c21;
+  color: white;
+}
+
+.site-header input:focus {
+  border-color: #ff9d00;
+}
+
+.site-header input::placeholder {
+  color: #777a82;
+}
+
+/* ========================================
+   SEÇÕES DA HOME
+======================================== */
 
 section {
   padding: 20px 40px;
@@ -96,19 +119,63 @@ section h2 {
 .section-line {
   width: 100%;
   height: 2px;
-  background-color: #ff9d00;
   margin-bottom: 10px;
+  background-color: #ff9d00;
 }
+
+/* ========================================
+   CONTAINER DOS CARDS
+======================================== */
+
+.cards-container {
+  display: flex;
+  gap: 25px;
+  flex-wrap: wrap;
+}
+
+/* ========================================
+   CARD DE OBRA
+======================================== */
 
 .obra-card {
   width: 200px;
-  cursor: pointer;
   margin-bottom: 10px;
+  cursor: pointer;
   transition: transform 0.3s ease;
 }
 
 .obra-card:hover {
   transform: translateY(-5px);
+}
+
+.obra-card-link {
+  display: block;
+  color: inherit;
+  text-decoration: none;
+}
+
+.obra-card-link:hover {
+  color: inherit;
+}
+
+.obra-image {
+  position: relative;
+  width: 200px;
+  height: 300px;
+  overflow: hidden;
+  border-radius: 10px;
+}
+
+.obra-image img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  transition: transform 0.3s ease;
+}
+
+.obra-card:hover .obra-image img {
+  transform: scale(1.03);
 }
 
 .obra-card h3 {
@@ -125,20 +192,9 @@ section h2 {
   font-size: 14px;
 }
 
-.obra-image {
-  width: 200px;
-  height: 300px;
-  overflow: hidden;
-  border-radius: 10px;
-  position: relative;
-}
-
-.obra-image img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  display: block;
-}
+/* ========================================
+   OVERLAY DOS CARDS
+======================================== */
 
 .obra-overlay {
   position: absolute;
@@ -146,13 +202,12 @@ section h2 {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0);
-  transition: background-color 0.3s ease;
-
+  padding: 12px;
   display: flex;
   align-items: flex-end;
   justify-content: flex-end;
-  padding: 12px;
+  background-color: rgba(0, 0, 0, 0);
+  transition: background-color 0.3s ease;
 }
 
 .obra-card:hover .obra-overlay {
@@ -171,8 +226,9 @@ section h2 {
   opacity: 1;
 }
 
-
-
+/* ========================================
+   CATÁLOGO
+======================================== */
 
 .catalogo-page {
   min-height: 100vh;
@@ -185,6 +241,10 @@ section h2 {
   margin: 0 auto;
   padding: 50px 0 80px;
 }
+
+/* ========================================
+   CABEÇALHO DO CATÁLOGO
+======================================== */
 
 .catalogo-heading {
   display: flex;
@@ -235,6 +295,9 @@ section h2 {
   font-size: 0.85rem;
 }
 
+/* ========================================
+   PESQUISA DO CATÁLOGO
+======================================== */
 
 .catalogo-search {
   display: flex;
@@ -267,6 +330,9 @@ section h2 {
   color: #777a82;
 }
 
+/* ========================================
+   FILTROS DO CATÁLOGO
+======================================== */
 
 .catalogo-filtros {
   padding: 20px;
@@ -308,6 +374,9 @@ section h2 {
   font-weight: 700;
 }
 
+/* ========================================
+   FILTROS SECUNDÁRIOS
+======================================== */
 
 .catalogo-filtros-secundarios {
   display: flex;
@@ -369,7 +438,9 @@ section h2 {
   color: #14151a;
 }
 
-/* RESULTADOS */
+/* ========================================
+   RESULTADOS DO CATÁLOGO
+======================================== */
 
 .catalogo-resultados {
   display: flex;
@@ -388,15 +459,19 @@ section h2 {
   font-size: 0.85rem;
 }
 
-/* GRID */
+/* ========================================
+   GRID DO CATÁLOGO
+======================================== */
 
 .catalogo-grid {
   display: grid;
-  grid-template-columns: repeat(6, 200px);
-  justify-content: space-between;
-  gap: 30px 20px;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 22px;
 }
 
+/* ========================================
+   BOTÃO VER MAIS
+======================================== */
 
 .catalogo-ver-mais {
   display: flex;
@@ -426,7 +501,9 @@ section h2 {
   transform: translateY(-2px);
 }
 
-
+/* ========================================
+   CATÁLOGO VAZIO
+======================================== */
 
 .catalogo-vazio {
   display: flex;
@@ -467,82 +544,10 @@ section h2 {
   font-weight: 700;
   cursor: pointer;
 }
-@media (max-width: 1200px) {
-  .catalogo-grid {
-    grid-template-columns: repeat(5, 200px);
-    justify-content: center;
-  }
-}
 
-@media (max-width: 1000px) {
-  .catalogo-grid {
-    grid-template-columns: repeat(4, 200px);
-    justify-content: center;
-  }
-
-  .catalogo-heading {
-    align-items: flex-start;
-    flex-direction: column;
-  }
-
-  .catalogo-total {
-    align-items: flex-start;
-  }
-}
-
-@media (max-width: 760px) {
-  .catalogo-container {
-    width: 90%;
-    padding-top: 35px;
-  }
-
-  .catalogo-heading h1 {
-    font-size: 2.3rem;
-  }
-
-  .catalogo-grid {
-    grid-template-columns: repeat(3, 200px);
-    justify-content: center;
-    gap: 20px;
-  }
-
-  .catalogo-filtros-secundarios {
-    align-items: stretch;
-    flex-direction: column;
-  }
-
-  .catalogo-filtro {
-    width: 100%;
-  }
-
-  .catalogo-limpar {
-    width: 100%;
-  }
-}
-
-@media (max-width: 500px) {
-  .catalogo-grid {
-    grid-template-columns: repeat(2, 150px);
-    gap: 20px 15px;
-  }
-
-  .catalogo-filtros {
-    padding: 15px;
-  }
-}
-
-.obra-card-link {
-  color: inherit;
-  text-decoration: none;
-  display: block;
-}
-
-.obra-card-link:hover {
-  color: inherit;
-}
-
-
-/* PÁGINA DE DETALHES OBRA */
+/* ========================================
+   PÁGINA DA OBRA
+======================================== */
 
 .obra-page {
   min-height: 100vh;
@@ -588,10 +593,10 @@ section h2 {
 }
 
 .obra-detalhes-imagem img {
+  display: block;
   width: 100%;
   height: 100%;
   object-fit: contain;
-  display: block;
 }
 
 .obra-detalhes-info {
@@ -678,6 +683,10 @@ section h2 {
   color: #14151a;
 }
 
+/* ========================================
+   OBRA NÃO ENCONTRADA
+======================================== */
+
 .obra-nao-encontrada {
   width: min(700px, 90%);
   margin: 100px auto;
@@ -703,7 +712,34 @@ section h2 {
   font-weight: 700;
 }
 
-/* RESPONSIVIDADE DA PÁGINA OBRA */
+/* ========================================
+   RESPONSIVIDADE — CATÁLOGO
+======================================== */
+
+@media (max-width: 1200px) {
+  .catalogo-grid {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 1000px) {
+  .catalogo-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .catalogo-heading {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .catalogo-total {
+    align-items: flex-start;
+  }
+}
+
+/* ========================================
+   RESPONSIVIDADE — TABLET/MOBILE
+======================================== */
 
 @media (max-width: 800px) {
   .obra-detalhes {
@@ -726,88 +762,11 @@ section h2 {
   }
 }
 
-@media (max-width: 500px) {
-  .obra-container {
-    width: 90%;
-    padding-top: 25px;
-  }
-
-  .obra-detalhes {
-    padding: 20px;
-    gap: 30px;
-  }
-
-  .obra-detalhes-imagem {
-    width: 220px;
-    height: 330px;
-  }
-
-  .obra-detalhes-info h1 {
-    font-size: 2.2rem;
-  }
-}
-
-
-.site-header {
-  padding: 25px 40px;
-  display: flex;
-  align-items: center;
-  gap: 35px;
-  border-bottom: 1px solid #292b32;
-  background-color: #14151a;
-}
-
-.site-logo {
-  color: #ff9d00;
-  font-size: 1.8rem;
-  font-weight: 800;
-  text-decoration: none;
-  white-space: nowrap;
-}
-
-.site-logo:hover {
-  color: #ffd000;
-}
-
-.site-nav {
-  display: flex;
-  align-items: center;
-  gap: 25px;
-  flex: 1;
-}
-
-.site-nav a {
-  color: #a9abb2;
-  font-size: 0.9rem;
-  font-weight: 600;
-  text-decoration: none;
-  transition: color 0.2s ease;
-}
-
-.site-nav a:hover {
-  color: #ffd000;
-}
-
-.site-header input {
-  width: 280px;
-  height: 40px;
-  padding: 0 14px;
-  border: 1px solid #30323a;
-  border-radius: 8px;
-  outline: none;
-  background-color: #1b1c21;
-  color: white;
-}
-
-.site-header input:focus {
-  border-color: #ff9d00;
-}
-
-.site-header input::placeholder {
-  color: #777a82;
-}
-
 @media (max-width: 760px) {
+  section {
+    padding: 20px;
+  }
+
   .site-header {
     padding: 20px;
     gap: 20px;
@@ -822,6 +781,33 @@ section h2 {
 
   .site-header input {
     width: 220px;
+  }
+
+  .catalogo-container {
+    width: 90%;
+    padding-top: 35px;
+  }
+
+  .catalogo-heading h1 {
+    font-size: 2.3rem;
+  }
+
+  .catalogo-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 15px;
+  }
+
+  .catalogo-filtros-secundarios {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .catalogo-filtro {
+    width: 100%;
+  }
+
+  .catalogo-limpar {
+    width: 100%;
   }
 }
 
@@ -841,5 +827,32 @@ section h2 {
 
   .site-nav {
     gap: 15px;
+  }
+
+  .catalogo-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .catalogo-filtros {
+    padding: 15px;
+  }
+
+  .obra-container {
+    width: 90%;
+    padding-top: 25px;
+  }
+
+  .obra-detalhes {
+    padding: 20px;
+    gap: 30px;
+  }
+
+  .obra-detalhes-imagem {
+    width: 220px;
+    height: 330px;
+  }
+
+  .obra-detalhes-info h1 {
+    font-size: 2.2rem;
   }
 }

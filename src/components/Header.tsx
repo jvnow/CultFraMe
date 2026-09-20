@@ -31,7 +31,6 @@ function Header() {
 
   return (
     <header className="site-header">
-
       <Link
         to="/"
         className="site-logo"
@@ -40,19 +39,9 @@ function Header() {
       </Link>
 
       <nav className="site-nav">
-
-        <Link to="/">
-          Início
-        </Link>
-
-        <Link to="/catalogo">
-          Catálogo
-        </Link>
-
-        <Link to="/biblioteca">
-          Biblioteca
-        </Link>
-
+        <Link to="/">Início</Link>
+        <Link to="/catalogo">Catálogo</Link>
+        <Link to="/biblioteca">Biblioteca</Link>
       </nav>
 
       <input
@@ -64,7 +53,6 @@ function Header() {
         }
         onKeyDown={lidarComTecla}
       />
-
     </header>
   )
 }

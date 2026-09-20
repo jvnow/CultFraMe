@@ -1,6 +1,7 @@
 import { Link, useParams } from 'react-router-dom'
 
 import Header from '../components/Header'
+
 import { obras } from '../data/obras'
 
 function Obra() {
@@ -35,7 +36,6 @@ function Obra() {
       <Header />
 
       <div className="obra-container">
-
         <Link
           to="/catalogo"
           className="obra-voltar"
@@ -44,7 +44,6 @@ function Obra() {
         </Link>
 
         <div className="obra-detalhes">
-
           <div className="obra-detalhes-imagem">
             <img
               src={obra.imagem}
@@ -53,7 +52,6 @@ function Obra() {
           </div>
 
           <div className="obra-detalhes-info">
-
             <span className="obra-detalhes-tipo">
               {obra.tipo === 'Serie'
                 ? 'Série'
@@ -78,7 +76,6 @@ function Obra() {
             </p>
 
             <div className="obra-detalhes-acoes">
-
               <button>
                 + Adicionar à biblioteca
               </button>
@@ -86,13 +83,9 @@ function Obra() {
               <button>
                 ★ Avaliar
               </button>
-
             </div>
-
           </div>
-
         </div>
-
       </div>
     </main>
   )

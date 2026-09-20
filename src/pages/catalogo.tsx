@@ -3,18 +3,15 @@ import { useSearchParams } from 'react-router-dom'
 
 import Header from '../components/Header'
 import ObraCard from '../components/ObraCard'
-
 import { obras } from '../data/obras'
 
 function Catalogo() {
   const [searchParams] = useSearchParams()
 
-  const buscaInicial =
-    searchParams.get('busca') ?? ''
+  const buscaInicial = searchParams.get('busca') ?? ''
 
   const [categoria, setCategoria] = useState('Todas')
   const [busca, setBusca] = useState(buscaInicial)
-  
   const [notaMinima, setNotaMinima] = useState(0)
   const [ordenacao, setOrdenacao] = useState('padrao')
   const [quantidadeExibida, setQuantidadeExibida] = useState(12)
@@ -71,7 +68,7 @@ function Catalogo() {
     categoria,
     busca,
     notaMinima,
-    ordenacao
+    ordenacao,
   ])
 
   const obrasExibidas =
@@ -104,11 +101,8 @@ function Catalogo() {
       <Header />
 
       <div className="catalogo-container">
-
         {/* CABEÇALHO */}
-
         <div className="catalogo-heading">
-
           <div>
             <span className="catalogo-eyebrow">
               CULTFRAME
@@ -133,14 +127,11 @@ function Catalogo() {
                 : 'obras encontradas'}
             </span>
           </div>
-
         </div>
 
         {/* PESQUISA */}
-
         <div className="catalogo-search">
-
-          <span></span>
+          <span>🔎</span>
 
           <input
             type="text"
@@ -151,15 +142,11 @@ function Catalogo() {
               setQuantidadeExibida(12)
             }}
           />
-
         </div>
 
         {/* FILTROS */}
-
         <div className="catalogo-filtros">
-
           <div className="catalogo-categorias">
-
             <button
               className={
                 categoria === 'Todas'
@@ -299,15 +286,11 @@ function Catalogo() {
             >
               Eventos
             </button>
-
           </div>
 
           {/* FILTROS SECUNDÁRIOS */}
-
           <div className="catalogo-filtros-secundarios">
-
             <div className="catalogo-filtro">
-
               <label htmlFor="nota">
                 Nota mínima
               </label>
@@ -319,6 +302,7 @@ function Catalogo() {
                   setNotaMinima(
                     Number(event.target.value)
                   )
+
                   setQuantidadeExibida(12)
                 }}
               >
@@ -342,11 +326,9 @@ function Catalogo() {
                   4.5+
                 </option>
               </select>
-
             </div>
 
             <div className="catalogo-filtro">
-
               <label htmlFor="ordenacao">
                 Ordenar
               </label>
@@ -379,7 +361,6 @@ function Catalogo() {
                   Z — A
                 </option>
               </select>
-
             </div>
 
             <button
@@ -388,15 +369,11 @@ function Catalogo() {
             >
               Limpar filtros
             </button>
-
           </div>
-
         </div>
 
         {/* RESULTADOS */}
-
         <div className="catalogo-resultados">
-
           <div>
             <h2>
               {categoria === 'Todas'
@@ -417,54 +394,38 @@ function Catalogo() {
                 : 'resultados'}
             </span>
           </div>
-
         </div>
 
         {/* CATÁLOGO */}
-
         {obrasFiltradas.length > 0 ? (
-
           <>
-
             <div className="catalogo-grid">
-
               {obrasExibidas.map((obra) => (
                 <ObraCard
-              key={obra.id}
-              id={obra.id}
-              titulo={obra.titulo}
-              tipo={obra.tipo}
-              imagem={obra.imagem}
-              nota={obra.nota}
-              />
+                  key={obra.id}
+                  id={obra.id}
+                  titulo={obra.titulo}
+                  tipo={obra.tipo}
+                  imagem={obra.imagem}
+                  nota={obra.nota}
+                />
               ))}
-
             </div>
 
             {/* VER MAIS */}
-
             {existemMaisObras && (
-
               <div className="catalogo-ver-mais">
-
                 <button
                   onClick={mostrarMais}
                 >
                   Ver mais
                 </button>
-
               </div>
-
             )}
-
           </>
-
         ) : (
-
           /* NENHUM RESULTADO */
-
           <div className="catalogo-vazio">
-
             <span>🔎</span>
 
             <h2>
@@ -481,13 +442,9 @@ function Catalogo() {
             >
               Limpar filtros
             </button>
-
           </div>
-
         )}
-
       </div>
-
     </main>
   )
 }
