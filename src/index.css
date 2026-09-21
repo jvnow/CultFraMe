@@ -856,3 +856,286 @@ section h2 {
     font-size: 2.2rem;
   }
 }
+
+
+/* ========================================
+   BIBLIOTECA
+======================================== */
+
+.biblioteca-page {
+  min-height: 100vh;
+  background-color: #14151a;
+  color: white;
+}
+
+.biblioteca-container {
+  width: min(1400px, 92%);
+  margin: 0 auto;
+  padding: 50px 0 80px;
+}
+
+.biblioteca-heading {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 30px;
+  margin-bottom: 35px;
+}
+
+.biblioteca-eyebrow {
+  display: block;
+  margin-bottom: 8px;
+  color: #ffd000;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
+.biblioteca-heading h1 {
+  margin-bottom: 10px;
+  font-size: 3rem;
+}
+
+.biblioteca-heading p {
+  color: #a9abb2;
+  line-height: 1.6;
+}
+
+.biblioteca-total {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.biblioteca-total strong {
+  color: #ffd000;
+  font-size: 2.3rem;
+}
+
+.biblioteca-total span {
+  color: #8f9198;
+  font-size: 0.85rem;
+}
+
+.biblioteca-estatisticas {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  margin-bottom: 40px;
+}
+
+.biblioteca-estatisticas button {
+  display: flex;
+  padding: 20px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 5px;
+  border: 1px solid #292b32;
+  border-radius: 12px;
+  background-color: #1b1c21;
+  color: white;
+  text-align: left;
+  cursor: pointer;
+  transition:
+    border-color 0.2s ease,
+    background-color 0.2s ease;
+}
+
+.biblioteca-estatisticas button:hover {
+  border-color: #ff9d00;
+}
+
+.biblioteca-estatisticas button.ativo {
+  border-color: #ff9d00;
+  background-color: #24252b;
+}
+
+.biblioteca-estatisticas strong {
+  color: #ffd000;
+  font-size: 1.8rem;
+}
+
+.biblioteca-estatisticas span {
+  color: #a9abb2;
+  font-size: 0.85rem;
+}
+
+.biblioteca-grid {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 22px;
+}
+
+.biblioteca-item {
+  min-width: 0;
+}
+
+.biblioteca-controles {
+  display: flex;
+  margin-top: 10px;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.biblioteca-controles select {
+  width: 100%;
+  height: 36px;
+  padding: 0 8px;
+  border: 1px solid #30323a;
+  border-radius: 7px;
+  outline: none;
+  background-color: #1b1c21;
+  color: white;
+  font-size: 0.8rem;
+}
+
+.biblioteca-controles select:focus {
+  border-color: #ff9d00;
+}
+
+.biblioteca-controles button {
+  height: 34px;
+  border: 1px solid #383a42;
+  border-radius: 7px;
+  background-color: transparent;
+  color: #a9abb2;
+  font-size: 0.8rem;
+  cursor: pointer;
+}
+
+.biblioteca-controles button:hover {
+  border-color: #ff9d00;
+  color: #ff9d00;
+}
+
+.biblioteca-vazia {
+  display: flex;
+  min-height: 350px;
+  padding: 50px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  border: 1px solid #292b32;
+  border-radius: 14px;
+  background-color: #1b1c21;
+}
+
+.biblioteca-vazia > span {
+  margin-bottom: 15px;
+  font-size: 3rem;
+}
+
+.biblioteca-vazia h2 {
+  margin-bottom: 10px;
+}
+
+.biblioteca-vazia p {
+  max-width: 500px;
+  color: #92949b;
+  line-height: 1.6;
+}
+
+/* ========================================
+   MENU DE STATUS DA OBRA
+======================================== */
+
+.obra-status-menu {
+  display: flex;
+  margin-top: 15px;
+  padding: 15px;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid #292b32;
+  border-radius: 10px;
+  background-color: #14151a;
+}
+
+.obra-status-menu > span {
+  width: 100%;
+  margin-bottom: 3px;
+  color: #a9abb2;
+  font-size: 0.85rem;
+}
+
+.obra-status-menu button {
+  padding: 9px 13px;
+  border: 1px solid #383a42;
+  border-radius: 7px;
+  background-color: #1b1c21;
+  color: #d7d8dc;
+  cursor: pointer;
+}
+
+.obra-status-menu button:hover {
+  border-color: #ff9d00;
+  color: #ffd000;
+}
+
+.obra-mensagem {
+  margin-top: 12px;
+  color: #ffd000;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+/* ========================================
+   RESPONSIVIDADE — BIBLIOTECA
+======================================== */
+
+@media (max-width: 1200px) {
+  .biblioteca-grid {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 1000px) {
+  .biblioteca-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 760px) {
+  .biblioteca-heading {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .biblioteca-total {
+    align-items: flex-start;
+  }
+
+  .biblioteca-estatisticas {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .biblioteca-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 15px;
+  }
+}
+
+@media (max-width: 500px) {
+  .biblioteca-container {
+    width: 90%;
+    padding-top: 35px;
+  }
+
+  .biblioteca-heading h1 {
+    font-size: 2.3rem;
+  }
+
+  .biblioteca-estatisticas {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .biblioteca-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .biblioteca-controles select,
+  .biblioteca-controles button {
+    font-size: 0.75rem;
+  }
+}

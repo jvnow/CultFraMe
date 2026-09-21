@@ -1,15 +1,104 @@
-import { Link, useParams } from 'react-router-dom'
+import { useState } from 'react'
+import {
+  Link,
+  useParams,
+} from 'react-router-dom'
 
 import Header from '../components/Header'
 
 import { obras } from '../data/obras'
 
+type StatusBiblioteca =
+  | 'quero'
+  | 'vendo'
+  | 'concluido'
+
+interface ItemBiblioteca {
+  obraId: number
+  status: StatusBiblioteca
+}
+
+const CHAVE_BIBLIOTECA =
+  'cultframe-biblioteca'
+
 function Obra() {
   const { id } = useParams()
+
+  const [mostrarStatus, setMostrarStatus] =
+    useState(false)
+
+  const [
+    mensagemBiblioteca,
+    setMensagemBiblioteca,
+  ] = useState('')
 
   const obra = obras.find(
     (item) => item.id === Number(id)
   )
+
+  function adicionarBiblioteca(
+    status: StatusBiblioteca
+  ) {
+    if (!obra) {
+      return
+    }
+
+    const bibliotecaSalva =
+      localStorage.getItem(
+        CHAVE_BIBLIOTECA
+      )
+
+    let biblioteca: ItemBiblioteca[] = []
+
+    if (bibliotecaSalva) {
+      try {
+        biblioteca =
+          JSON.parse(
+            bibliotecaSalva
+          ) as ItemBiblioteca[]
+      } catch {
+        biblioteca = []
+      }
+    }
+
+    const obraJaExiste =
+      biblioteca.some(
+        (item) =>
+          item.obraId === obra.id
+      )
+
+    if (obraJaExiste) {
+      biblioteca =
+        biblioteca.map((item) =>
+          item.obraId === obra.id
+            ? {
+                ...item,
+                status,
+              }
+            : item
+        )
+    } else {
+      biblioteca.push({
+        obraId: obra.id,
+        status,
+      })
+    }
+
+    localStorage.setItem(
+      CHAVE_BIBLIOTECA,
+      JSON.stringify(biblioteca)
+    )
+
+    setMostrarStatus(false)
+
+    setMensagemBiblioteca(
+      'Obra adicionada à biblioteca!'
+    )
+
+    setTimeout(() => {
+      setMensagemBiblioteca('')
+    }, 2500)
+  }
 
   if (!obra) {
     return (
@@ -66,7 +155,11 @@ function Obra() {
 
             <div className="obra-detalhes-nota">
               <span>★</span>
-              <strong>{obra.nota}</strong>
+
+              <strong>
+                {obra.nota}
+              </strong>
+
               <small>/ 5</small>
             </div>
 
@@ -76,7 +169,13 @@ function Obra() {
             </p>
 
             <div className="obra-detalhes-acoes">
-              <button>
+              <button
+                onClick={() =>
+                  setMostrarStatus(
+                    !mostrarStatus
+                  )
+                }
+              >
                 + Adicionar à biblioteca
               </button>
 
@@ -84,6 +183,50 @@ function Obra() {
                 ★ Avaliar
               </button>
             </div>
+
+            {mostrarStatus && (
+              <div className="obra-status-menu">
+                <span>
+                  Adicionar como:
+                </span>
+
+                <button
+                  onClick={() =>
+                    adicionarBiblioteca(
+                      'quero'
+                    )
+                  }
+                >
+                  Quero ver
+                </button>
+
+                <button
+                  onClick={() =>
+                    adicionarBiblioteca(
+                      'vendo'
+                    )
+                  }
+                >
+                  Vendo
+                </button>
+
+                <button
+                  onClick={() =>
+                    adicionarBiblioteca(
+                      'concluido'
+                    )
+                  }
+                >
+                  Concluído
+                </button>
+              </div>
+            )}
+
+            {mensagemBiblioteca && (
+              <p className="obra-mensagem">
+                ✓ {mensagemBiblioteca}
+              </p>
+            )}
           </div>
         </div>
       </div>
