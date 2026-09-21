@@ -19,12 +19,19 @@ function ObraCard({
     <Link
       to={`/obra/${id}`}
       className="obra-card-link"
+      aria-label={`${titulo}, ${tipo}, nota ${nota} de 5`}
     >
       <div className="obra-card">
         <div className="obra-image">
-          <img src={imagem} alt={titulo} />
+          <img
+            src={imagem}
+            alt={`Capa de ${titulo}`}
+          />
 
-          <div className="obra-overlay">
+          <div
+            className="obra-overlay"
+            aria-hidden="true"
+          >
             <span>★ {nota}</span>
           </div>
         </div>

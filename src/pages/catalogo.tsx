@@ -121,7 +121,10 @@ function Catalogo() {
               {obrasFiltradas.length}
             </strong>
 
-            <span>
+            <span
+              aria-live="polite"
+              aria-atomic="true"
+            >
               {obrasFiltradas.length === 1
                 ? 'obra encontrada'
                 : 'obras encontradas'}
@@ -131,12 +134,21 @@ function Catalogo() {
 
         {/* PESQUISA */}
         <div className="catalogo-search">
-          <span>🔎</span>
+          <span aria-hidden="true">🔎</span>
+
+          <label
+            htmlFor="busca-catalogo"
+            className="sr-only"
+          >
+            Pesquisar no catálogo
+          </label>
 
           <input
-            type="text"
+            id="busca-catalogo"
+            type="search"
             placeholder="Pesquisar no catálogo..."
             value={busca}
+            aria-label="Pesquisar no catálogo"
             onChange={(event) => {
               setBusca(event.target.value)
               setQuantidadeExibida(12)
@@ -146,12 +158,20 @@ function Catalogo() {
 
         {/* FILTROS */}
         <div className="catalogo-filtros">
-          <div className="catalogo-categorias">
+          <div
+            className="catalogo-categorias"
+            role="group"
+            aria-label="Filtrar por categoria"
+          >
             <button
+              type="button"
               className={
                 categoria === 'Todas'
                   ? 'ativo'
                   : ''
+              }
+              aria-pressed={
+                categoria === 'Todas'
               }
               onClick={() => {
                 setCategoria('Todas')
@@ -162,10 +182,14 @@ function Catalogo() {
             </button>
 
             <button
+              type="button"
               className={
                 categoria === 'Filme'
                   ? 'ativo'
                   : ''
+              }
+              aria-pressed={
+                categoria === 'Filme'
               }
               onClick={() => {
                 setCategoria('Filme')
@@ -176,10 +200,14 @@ function Catalogo() {
             </button>
 
             <button
+              type="button"
               className={
                 categoria === 'Serie'
                   ? 'ativo'
                   : ''
+              }
+              aria-pressed={
+                categoria === 'Serie'
               }
               onClick={() => {
                 setCategoria('Serie')
@@ -190,10 +218,14 @@ function Catalogo() {
             </button>
 
             <button
+              type="button"
               className={
                 categoria === 'Anime'
                   ? 'ativo'
                   : ''
+              }
+              aria-pressed={
+                categoria === 'Anime'
               }
               onClick={() => {
                 setCategoria('Anime')
@@ -204,10 +236,14 @@ function Catalogo() {
             </button>
 
             <button
+              type="button"
               className={
                 categoria === 'Jogo'
                   ? 'ativo'
                   : ''
+              }
+              aria-pressed={
+                categoria === 'Jogo'
               }
               onClick={() => {
                 setCategoria('Jogo')
@@ -218,10 +254,14 @@ function Catalogo() {
             </button>
 
             <button
+              type="button"
               className={
                 categoria === 'Livro'
                   ? 'ativo'
                   : ''
+              }
+              aria-pressed={
+                categoria === 'Livro'
               }
               onClick={() => {
                 setCategoria('Livro')
@@ -232,10 +272,14 @@ function Catalogo() {
             </button>
 
             <button
+              type="button"
               className={
                 categoria === 'Manga'
                   ? 'ativo'
                   : ''
+              }
+              aria-pressed={
+                categoria === 'Manga'
               }
               onClick={() => {
                 setCategoria('Manga')
@@ -246,10 +290,14 @@ function Catalogo() {
             </button>
 
             <button
+              type="button"
               className={
                 categoria === 'Musica'
                   ? 'ativo'
                   : ''
+              }
+              aria-pressed={
+                categoria === 'Musica'
               }
               onClick={() => {
                 setCategoria('Musica')
@@ -260,10 +308,14 @@ function Catalogo() {
             </button>
 
             <button
+              type="button"
               className={
                 categoria === 'Podcast'
                   ? 'ativo'
                   : ''
+              }
+              aria-pressed={
+                categoria === 'Podcast'
               }
               onClick={() => {
                 setCategoria('Podcast')
@@ -274,10 +326,14 @@ function Catalogo() {
             </button>
 
             <button
+              type="button"
               className={
                 categoria === 'Evento'
                   ? 'ativo'
                   : ''
+              }
+              aria-pressed={
+                categoria === 'Evento'
               }
               onClick={() => {
                 setCategoria('Evento')
@@ -364,7 +420,9 @@ function Catalogo() {
             </div>
 
             <button
+              type="button"
               className="catalogo-limpar"
+              aria-label="Limpar todos os filtros"
               onClick={limparFiltros}
             >
               Limpar filtros
@@ -373,7 +431,11 @@ function Catalogo() {
         </div>
 
         {/* RESULTADOS */}
-        <div className="catalogo-resultados">
+        <div
+          className="catalogo-resultados"
+          aria-live="polite"
+          aria-atomic="true"
+        >
           <div>
             <h2>
               {categoria === 'Todas'
@@ -399,7 +461,10 @@ function Catalogo() {
         {/* CATÁLOGO */}
         {obrasFiltradas.length > 0 ? (
           <>
-            <div className="catalogo-grid">
+            <div
+              className="catalogo-grid"
+              aria-label="Resultados do catálogo"
+            >
               {obrasExibidas.map((obra) => (
                 <ObraCard
                   key={obra.id}
@@ -416,6 +481,8 @@ function Catalogo() {
             {existemMaisObras && (
               <div className="catalogo-ver-mais">
                 <button
+                  type="button"
+                  aria-label="Mostrar mais obras"
                   onClick={mostrarMais}
                 >
                   Ver mais
@@ -425,8 +492,13 @@ function Catalogo() {
           </>
         ) : (
           /* NENHUM RESULTADO */
-          <div className="catalogo-vazio">
-            <span>🔎</span>
+          <div
+            className="catalogo-vazio"
+            role="status"
+          >
+            <span aria-hidden="true">
+              🔎
+            </span>
 
             <h2>
               Nenhuma obra encontrada
@@ -438,6 +510,7 @@ function Catalogo() {
             </p>
 
             <button
+              type="button"
               onClick={limparFiltros}
             >
               Limpar filtros

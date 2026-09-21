@@ -38,15 +38,19 @@ function Header() {
         CultFraMe
       </Link>
 
-      <nav className="site-nav">
+      <nav
+        className="site-nav"
+        aria-label="Navegação principal"
+      >
         <Link to="/">Início</Link>
         <Link to="/catalogo">Catálogo</Link>
         <Link to="/biblioteca">Biblioteca</Link>
       </nav>
 
       <input
-        type="text"
+        type="search"
         placeholder="Pesquisar..."
+        aria-label="Pesquisar obras"
         value={busca}
         onChange={(event) =>
           setBusca(event.target.value)

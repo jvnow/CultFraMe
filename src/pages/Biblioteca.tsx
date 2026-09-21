@@ -157,7 +157,10 @@ function Biblioteca() {
           <div className="biblioteca-total">
             <strong>{quantidadeTotal}</strong>
 
-            <span>
+            <span
+              aria-live="polite"
+              aria-atomic="true"
+            >
               {quantidadeTotal === 1
                 ? 'obra salva'
                 : 'obras salvas'}
@@ -165,12 +168,20 @@ function Biblioteca() {
           </div>
         </div>
 
-        <div className="biblioteca-estatisticas">
+        <div
+          className="biblioteca-estatisticas"
+          role="group"
+          aria-label="Filtrar biblioteca por status"
+        >
           <button
+            type="button"
             className={
               filtro === 'todos'
                 ? 'ativo'
                 : ''
+            }
+            aria-pressed={
+              filtro === 'todos'
             }
             onClick={() =>
               setFiltro('todos')
@@ -181,10 +192,14 @@ function Biblioteca() {
           </button>
 
           <button
+            type="button"
             className={
               filtro === 'quero'
                 ? 'ativo'
                 : ''
+            }
+            aria-pressed={
+              filtro === 'quero'
             }
             onClick={() =>
               setFiltro('quero')
@@ -195,10 +210,14 @@ function Biblioteca() {
           </button>
 
           <button
+            type="button"
             className={
               filtro === 'vendo'
                 ? 'ativo'
                 : ''
+            }
+            aria-pressed={
+              filtro === 'vendo'
             }
             onClick={() =>
               setFiltro('vendo')
@@ -209,10 +228,14 @@ function Biblioteca() {
           </button>
 
           <button
+            type="button"
             className={
               filtro === 'concluido'
                 ? 'ativo'
                 : ''
+            }
+            aria-pressed={
+              filtro === 'concluido'
             }
             onClick={() =>
               setFiltro('concluido')
@@ -227,7 +250,11 @@ function Biblioteca() {
         </div>
 
         {obrasFiltradas.length > 0 ? (
-          <div className="biblioteca-grid">
+          <div
+            className="biblioteca-grid"
+            aria-live="polite"
+            aria-atomic="true"
+          >
             {obrasFiltradas.map(
               ({ obra, status }) => (
                 <div
@@ -243,8 +270,17 @@ function Biblioteca() {
                   />
 
                   <div className="biblioteca-controles">
+                    <label
+                      htmlFor={`status-${obra.id}`}
+                      className="sr-only"
+                    >
+                      Status de {obra.titulo}
+                    </label>
+
                     <select
+                      id={`status-${obra.id}`}
                       value={status}
+                      aria-label={`Status de ${obra.titulo}`}
                       onChange={(event) =>
                         alterarStatus(
                           obra.id,
@@ -267,6 +303,8 @@ function Biblioteca() {
                     </select>
 
                     <button
+                      type="button"
+                      aria-label={`Remover ${obra.titulo} da biblioteca`}
                       onClick={() =>
                         removerDaBiblioteca(
                           obra.id
@@ -281,8 +319,13 @@ function Biblioteca() {
             )}
           </div>
         ) : (
-          <div className="biblioteca-vazia">
-            <span>📚</span>
+          <div
+            className="biblioteca-vazia"
+            role="status"
+          >
+            <span aria-hidden="true">
+              📚
+            </span>
 
             <h2>
               {quantidadeTotal === 0

@@ -105,11 +105,15 @@ function Obra() {
       <main className="obra-page">
         <Header />
 
-        <div className="obra-nao-encontrada">
+        <div
+          className="obra-nao-encontrada"
+          role="status"
+        >
           <h1>Obra não encontrada</h1>
 
           <p>
-            Não encontramos a obra que você está procurando.
+            Não encontramos a obra que você está
+            procurando.
           </p>
 
           <Link to="/catalogo">
@@ -136,7 +140,7 @@ function Obra() {
           <div className="obra-detalhes-imagem">
             <img
               src={obra.imagem}
-              alt={obra.titulo}
+              alt={`Capa de ${obra.titulo}`}
             />
           </div>
 
@@ -153,8 +157,13 @@ function Obra() {
 
             <h1>{obra.titulo}</h1>
 
-            <div className="obra-detalhes-nota">
-              <span>★</span>
+            <div
+              className="obra-detalhes-nota"
+              aria-label={`Nota ${obra.nota} de 5`}
+            >
+              <span aria-hidden="true">
+                ★
+              </span>
 
               <strong>
                 {obra.nota}
@@ -170,6 +179,11 @@ function Obra() {
 
             <div className="obra-detalhes-acoes">
               <button
+                type="button"
+                aria-expanded={
+                  mostrarStatus
+                }
+                aria-controls="obra-status-menu"
                 onClick={() =>
                   setMostrarStatus(
                     !mostrarStatus
@@ -179,18 +193,25 @@ function Obra() {
                 + Adicionar à biblioteca
               </button>
 
-              <button>
+              <button
+                type="button"
+              >
                 ★ Avaliar
               </button>
             </div>
 
             {mostrarStatus && (
-              <div className="obra-status-menu">
+              <div
+                id="obra-status-menu"
+                className="obra-status-menu"
+                aria-label="Escolher status da biblioteca"
+              >
                 <span>
                   Adicionar como:
                 </span>
 
                 <button
+                  type="button"
                   onClick={() =>
                     adicionarBiblioteca(
                       'quero'
@@ -201,6 +222,7 @@ function Obra() {
                 </button>
 
                 <button
+                  type="button"
                   onClick={() =>
                     adicionarBiblioteca(
                       'vendo'
@@ -211,6 +233,7 @@ function Obra() {
                 </button>
 
                 <button
+                  type="button"
                   onClick={() =>
                     adicionarBiblioteca(
                       'concluido'
@@ -223,7 +246,12 @@ function Obra() {
             )}
 
             {mensagemBiblioteca && (
-              <p className="obra-mensagem">
+              <p
+                className="obra-mensagem"
+                role="status"
+                aria-live="polite"
+                aria-atomic="true"
+              >
                 ✓ {mensagemBiblioteca}
               </p>
             )}
