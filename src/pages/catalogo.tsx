@@ -134,7 +134,7 @@ function Catalogo() {
 
         {/* PESQUISA */}
         <div className="catalogo-search">
-          <span aria-hidden="true">🔎</span>
+          <span aria-hidden="true"></span>
 
           <label
             htmlFor="busca-catalogo"
